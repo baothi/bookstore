@@ -1,0 +1,56 @@
+<p id="notice"><%= notice %></p>
+<%= image_tag @book.cover.url(:thumb) %>
+<p>
+  <strong>Title:</strong>
+  <%= @book.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @book.description %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @book.author.try(:name) %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @book.category.try(:title) %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @book.price %>
+</p>
+
+<%= link_to 'Back', books_path %>
+<h4 style="margin-top: 20px;">Customer's feedbacks</h4>
+<table id = "all_comments" style="width: 600px;">
+  <tr>
+    <th>User email</th>
+    <th>Comment</th>
+  </tr>
+  <% @comments.each_with_index do |comment, idx| %>
+    <tr class=<%= idx.odd? ? "odd" : ""%>>
+      <td><%= comment.user.email%></td>
+      <td><%= comment.comment%></td>
+    </tr>
+  <% end %>
+</table>
+<%= form_for @new_comment do |f| %>
+  <h4>Add a new comment</h4>
+  <span class="field">
+    <%= f.label :comment %>
+    <%= f.text_field :comment %>
+  </span>
+
+  <span class="field">
+    <%= f.label :user_id %>
+    <%= select(:comment, :user_id, options_from_collection_for_select(User.all, :id, :email)) %>
+  </span>
+  <input type = "hidden" name = 'comment[commentable_type]', value=<%= @book.class.name%>>
+  <input type = "hidden" name = 'comment[commentable_id]', value=<%= @book.id%>>
+  <span style= "margin-left: 10px;"><%= f.submit %></span>
+<% end %>

@@ -1,0 +1,15 @@
+// Place all the styles related to the Categories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.categories li{
+  list-style-type: none;
+  background-image: url(asset-path('bullet.gif'));
+  background-position: top left;
+  background-repeat: no-repeat;
+  padding:0 0 7px 25px;
+  line-height: 17px;
+  height: 18px;
+  // height: 17px;
+  display: block;
+}

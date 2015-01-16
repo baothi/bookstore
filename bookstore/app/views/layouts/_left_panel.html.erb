@@ -1,0 +1,12 @@
+<div id="sidebar">
+  <div>
+    <img src=<%=asset_path("title1.gif")%> alt="" width="233" height="41" /><br />
+
+    <ul class="categories">
+      <li><a href= <%= categories_path %>>All categories</a></li>
+      <% @categories.each do|cat|%>
+        <li><a href=<%= category_path(cat) %>><%= cat.name%></a></li>
+      <% end%>
+    </ul>
+  </div>
+</div>

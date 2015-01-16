@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+<%= image_tag @book.cover.url(:medium) %>
+<p>
+  <strong>Title:</strong>
+  <%= @book.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @book.description %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @book.author.try(:name) %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @book.category.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @book.price %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_book_path(@book) %> |
+<%= link_to 'Back', admin_books_path %>
